@@ -69,6 +69,39 @@ Generate a tech intro comparing the "Claw" agent to a powerful crayfish.
 bun run cli.ts "OpenClaw: The Intelligent Crayfish Agent 🦞" "Educational" --template rednote-standard
 ```
 
+<details>
+<summary>View Generated Output Reference</summary>
+
+```json
+{
+  "ok": true,
+  "data": {
+    "title": "地表最强AI特工！OpenClaw小龙虾来啦🦞告别重复劳动自动化神具！",
+    "content": "宝子们！我真的挖到宝了！如果你还在每天重复点网页、搬运数据，那这个AI黑科技你一定要看！🦞\n\n它是OpenClaw，一个真正拥有“视觉”和“大脑”的超级AI特工！它不只是陪你聊天，而是真的会“动手”帮你干活！✨...",
+    "tags": ["AI", "OpenClaw", "人工智能", "生产力工具", "自动化"],
+    "outline": [
+      {
+        "page_num": 1,
+        "type": "cover",
+        "title": "地表最强AI特工！OpenClaw小龙虾Agent来了🦞",
+        "main_content": "[封面]\n标题：地表最强AI特工！OpenClaw小龙虾Agent来了🦞...",
+        "image_suggestion": "一只充满科技感、戴着赛博眼镜的小龙虾正在操控多个浮空的虚拟屏幕..."
+      }
+    ],
+    "imagePrompts": [
+      "请生成一张小红书风格的图文内容图片。页面内容：[封面]..."
+    ],
+    "metadata": {
+      "model": "gemini-3-flash-preview",
+      "style": "Educational",
+      "topic": "OpenClaw: The Intelligent Crayfish Agent 🦞",
+      "template": "rednote-standard"
+    }
+  }
+}
+```
+</details>
+
 ### 2. WeChat Moments: Life Update
 Generate a short, punchy caption with a single image prompt.
 ```bash
