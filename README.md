@@ -61,6 +61,20 @@ if (result.ok) {
 }
 ```
 
+## 📚 Scenarios
+
+### 1. Xiaohongshu: Food Guide (e.g., Crayfish)
+Generate a viral food review with structured outline and visual prompts.
+```bash
+bun run cli.ts "Spicy Crayfish Night 🦞" "Emotional" --template rednote-standard
+```
+
+### 2. WeChat Moments: Life Update
+Generate a short, punchy caption with a single image prompt.
+```bash
+bun run cli.ts "Friday Night Vibes" "Casual" --template wechat-moments
+```
+
 ## 🛠️ Configuration (proteus.json)
 
 Proteus looks for `proteus.json` in the current directory or `~/.config/proteus/`.
