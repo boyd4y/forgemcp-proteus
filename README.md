@@ -63,10 +63,10 @@ if (result.ok) {
 
 ## 📚 Scenarios
 
-### 1. Xiaohongshu: Food Guide (e.g., Crayfish)
-Generate a viral food review with structured outline and visual prompts.
+### 1. Xiaohongshu: OpenClaw Agent Intro (Crayfish)
+Generate a tech intro comparing the "Claw" agent to a powerful crayfish.
 ```bash
-bun run cli.ts "Spicy Crayfish Night 🦞" "Emotional" --template rednote-standard
+bun run cli.ts "OpenClaw: The Intelligent Crayfish Agent 🦞" "Educational" --template rednote-standard
 ```
 
 ### 2. WeChat Moments: Life Update
