@@ -1,0 +1,41 @@
+{
+  "name": "@forgemcp/proteus",
+  "version": "1.0.0",
+  "description": "Universal content generation engine using Gemini (Proteus)",
+  "main": "src/index.ts",
+  "bin": {
+    "proteus": "cli.ts"
+  },
+  "type": "module",
+  "scripts": {
+    "test": "bun test",
+    "check": "bun run src/health-check.ts",
+    "start": "bun run cli.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/forgemcp/proteus.git"
+  },
+  "keywords": [
+    "openclaw",
+    "clawdbot",
+    "skill",
+    "proteus",
+    "generator",
+    "gemini",
+    "ai"
+  ],
+  "author": "ForgeMCP <admin@forgemcp.cc>",
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "@google/genai": "^1.41.0",
+    "zod": "^3.22.4"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.0",
+    "bun-types": "latest"
+  }
+}
