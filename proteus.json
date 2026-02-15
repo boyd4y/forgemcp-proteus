@@ -1,0 +1,91 @@
+{
+  "templates": {
+    "rednote-standard": {
+      "id": "rednote-standard",
+      "description": "Standard 3-stage RedNote generation (Outline -> Images -> Content)",
+      "steps": [
+        {
+          "id": "generate_outline",
+          "type": "generate_text",
+          "name": "Generate Outline",
+          "template": "outline.j2",
+          "outputKey": "outlineRaw",
+          "inputMapping": {
+            "topic": "topic",
+            "style": "style",
+            "imageCount": "imageCount"
+          }
+        },
+        {
+          "id": "parse_outline",
+          "type": "transform",
+          "name": "Parse Outline",
+          "handlerId": "parseOutlineText",
+          "outputKey": "outline"
+        },
+        {
+          "id": "generate_prompts",
+          "type": "transform",
+          "name": "Generate Image Prompts",
+          "handlerId": "generateImagePromptsFromOutline",
+          "outputKey": "imagePrompts"
+        },
+        {
+          "id": "generate_images",
+          "type": "generate_images",
+          "name": "Generate Images",
+          "promptSourceKey": "imagePrompts"
+        },
+        {
+          "id": "prepare_content_input",
+          "type": "transform",
+          "name": "Stringify Outline",
+          "handlerId": "stringifyOutline",
+          "outputKey": "outline_json"
+        },
+        {
+          "id": "generate_content",
+          "type": "generate_json",
+          "name": "Generate Content",
+          "template": "content.j2",
+          "outputKey": "contentData",
+          "inputMapping": {
+            "topic": "topic",
+            "style": "style",
+            "outline_json": "outline_json"
+          }
+        }
+      ]
+    },
+    "wechat-moments": {
+      "id": "wechat-moments",
+      "description": "Simple 2-step workflow for WeChat Moments (Text + 1 Image)",
+      "steps": [
+        {
+          "id": "generate_content_and_prompt",
+          "type": "generate_json",
+          "name": "Generate Text & Prompt",
+          "template": "wechat.j2",
+          "outputKey": "contentData",
+          "inputMapping": {
+            "topic": "topic",
+            "style": "style"
+          }
+        },
+        {
+          "id": "prepare_image_prompt",
+          "type": "transform",
+          "name": "Extract Image Prompt",
+          "handlerId": "extractWechatImagePrompt",
+          "outputKey": "imagePrompts"
+        },
+        {
+          "id": "generate_image",
+          "type": "generate_images",
+          "name": "Generate Image",
+          "promptSourceKey": "imagePrompts"
+        }
+      ]
+    }
+  }
+}
