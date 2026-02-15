@@ -1,6 +1,6 @@
-# OpenCode Skill - Proteus Content Engine
+# OpenClaw Skill - Proteus Content Engine
 
-This repository contains an OpenCode skill (pure Node.js) for generating high-quality content for various platforms (RedNote, WeChat, Twitter, etc.) using Google Gemini.
+This repository contains an OpenClaw skill (pure Node.js) for generating high-quality content for various platforms (RedNote, WeChat, Twitter, etc.) using Google Gemini.
 
 ## Core Features
 

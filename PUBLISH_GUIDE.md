@@ -3,7 +3,7 @@
 ## Core Metadata Configuration
 - **clawdbot vs openclaw**: Use `clawdbot` for automated bots and `openclaw` for community-driven skills.
 - **env vs envs**: `env` is for single environment variables, `envs` is for multiple.
-- **files**: Ensure all necessary files are included in the `files` array in `package.json` or `opencode.json`.
+- **files**: Ensure all necessary files are included in the `files` array in `package.json`.
 
 ## Security Manifest Requirements
 - All skills must include a `security.json` manifest.
@@ -18,7 +18,7 @@
 - Use authenticated requests where possible.
 
 ## Best Practice Checklist
-- [ ] Valid `opencode.json`
+- [ ] Valid `SKILL.md`
 - [ ] Security manifest included
 - [ ] No hardcoded secrets
 - [ ] Documentation updated

@@ -17,4 +17,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **Zero-Config Auth**: Support for both Google AI Studio (API Key) and Vertex AI (ADC).
 - **Templates**: Jinja2 templates for structured outlines, image prompts, and viral copy.
 - **CLI**: Built-in CLI wrapper for direct execution.
-- **Pure Skill Architecture**: Dependency-free implementation (removed `@opencode-ai/plugin`).
+- **Pure Skill Architecture**: Dependency-free implementation (removed legacy plugin dependencies).
