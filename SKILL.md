@@ -19,7 +19,7 @@ metadata:
 
 examples:
   - "Create a Xiaohongshu post about a cozy cafe in Shanghai"
-  - 'bun cli.ts "Summer outfit ideas" "Casual"'
+  - 'bun cli.ts --topic "Summer outfit ideas" --style "Casual"'
 ---
 
 
@@ -58,12 +58,12 @@ Solves the pain point of writer's block and time-consuming content creation for 
 The agent should invoke this tool directly using `bun`. Dependencies are automatically handled by Bun on the first run:
 
 ```bash
-bun cli.ts "Topic" "Style" --flag value
+bun cli.ts --topic "Topic" --style "Style" --flag value
 ```
 
 Examples:
-- `bun cli.ts "Summer Outfit" "Casual"`
-- `bun cli.ts "Weekend Hike" "Emotional" --generate-images` 
+- `bun cli.ts --topic "Summer Outfit" --style "Casual"`
+- `bun cli.ts --topic "Weekend Hike" --style "Emotional" --generate-images` 
 
 ## Input Schema (Zod)
 

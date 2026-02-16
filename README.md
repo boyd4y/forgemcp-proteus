@@ -14,7 +14,7 @@
 - **🖼️ Auto-Visuals**: Integrated AI image generation (Imagen 3 / Gemini Pro Vision).
 - **🧠 Chain Engine**: Supports complex flows (e.g., Outline -> Visuals -> Content).
 - **⚡️ Fast & Cheap**: Optimized for `gemini-2.0-flash` by default.
-- **☁️ Unified Auth**: Works with **Google AI Studio** (API Key) and **Vertex AI** out of the box.
+- **☁️ Unified Auth**: Works with **Google AI Studio** (API Key) and **Vertex AI out of the box.
 
 ## 📦 Installation
 
@@ -38,14 +38,14 @@ If you have cloned the repository, run directly via `bun`:
 bun cli.ts init
 
 # Run with default template (RedNote style)
-bun cli.ts "Spring Outfit Ideas" "Casual" --template rednote-standard --generate-images
+bun cli.ts --topic "Spring Outfit Ideas" --style "Casual" --template rednote-standard --generate-images
 ```
 
 #### Global Usage (npm/bunx)
 If you want to use it without cloning, use `bunx`:
 
 ```bash
-bunx @forgemcp/proteus "Spring Outfit Ideas" "Casual" --template rednote-standard
+bunx @forgemcp/proteus --topic "Spring Outfit Ideas" --style "Casual" --template rednote-standard
 ```
 ### 2. As a Library (Node.js/TypeScript)
 
@@ -70,7 +70,7 @@ if (result.ok) {
 ### 1. Xiaohongshu: OpenClaw Agent Intro (Crayfish)
 Generate a tech intro comparing the "Claw" agent to a powerful crayfish.
 ```bash
-bun cli.ts "OpenClaw: The Intelligent Crayfish Agent 🦞" "Educational" --template rednote-standard
+bun cli.ts --topic "OpenClaw: The Intelligent Crayfish Agent 🦞" --style "Educational" --template rednote-standard
 ```
 
 <details>
@@ -109,7 +109,7 @@ bun cli.ts "OpenClaw: The Intelligent Crayfish Agent 🦞" "Educational" --templ
 ### 2. WeChat Moments: Life Update
 Generate a short, punchy caption with a single image prompt.
 ```bash
-bun cli.ts "Friday Night Vibes" "Casual" --template wechat-moments
+bun cli.ts --topic "Friday Night Vibes" --style "Casual" --template wechat-moments
 ```
 
 ## 🛠️ Configuration (proteus.json)
