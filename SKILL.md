@@ -54,10 +54,15 @@ Solves the pain point of writer's block and time-consuming content creation for 
 - "Generate a Xiaohongshu guide for [Topic] with [Style]"
 
 ### Slash Command
-`/proteus --topic "My Topic" --style "My Style"`
-`/proteus --topic "My Topic" --generate-images`
-`/proteus --topic "My Topic" --template wechat-moments`
+When installed as an OpenClaw skill, use the `/proteus` command:
 
+```bash
+/proteus --topic "My Topic" --style "My Style"
+/proteus --topic "My Topic" --generate-images
+/proteus --topic "My Topic" --template wechat-moments
+```
+
+*Note: The agent invokes this via `bun run cli.ts` internally when running from the source repository.*
 ## Input Schema (Zod)
 
 ```typescript
