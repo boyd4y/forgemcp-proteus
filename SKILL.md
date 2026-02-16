@@ -39,6 +39,13 @@ By installing this skill, you trust:
 -   **Google AI**: To process your prompts and generate content.
 -   **ForgeMCP**: As the author of this orchestration logic.
 
+
+## Available Templates
+
+Proteus uses a template-driven engine. The following templates are built-in:
+
+- **`rednote-standard`** (Default): Optimized for Xiaohongshu (RedNote). Generates a viral title, structured body with emojis/tags, and a multi-page visual outline with image prompts.
+- **`wechat-moments`**: Optimized for WeChat Moments. Generates short, punchy captions and a single matching image prompt.
 ## Core Functionality
 
 Generates high-quality Xiaohongshu (RedNote) posts including:
@@ -73,7 +80,7 @@ import { z } from "zod";
 const InputSchema = z.object({
   topic: z.string().min(1).describe("The main topic of the post"),
   style: z.enum(["Casual", "Professional", "Emotional", "Educational"]).default("Casual").describe("Tone and style of the content"),
-  template: z.string().optional().describe("Template to use (e.g., rednote-standard, wechat-moments)"),
+  template: z.string().default("rednote-standard").describe("Template to use (rednote-standard, wechat-moments)"),
   imageCount: z.number().min(1).max(9).default(4).describe("Number of image prompts to generate"),
   imageModel: z.string().optional().describe("Model for image generation (e.g., imagen-3)"),
   model: z.string().optional().describe("Gemini model to use (default: gemini-2.0-flash)"),
