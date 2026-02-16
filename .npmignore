@@ -1,6 +1,3 @@
 test/
-src/health-check.ts
 .proteus
-AGENTS.md
-PUBLISH_GUIDE.md
-SKILL.md
+node_modules/
