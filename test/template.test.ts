@@ -1,6 +1,6 @@
 import { describe, expect, it, mock } from "bun:test";
 import { executeTemplate } from "../src/engine";
-import { BUILTIN_TEMPLATES } from "../src/registry";
+import { getTemplate } from "../src/registry";
 import { ProteusInput } from "../src/config";
 
 // Mock GoogleGenAI
@@ -32,7 +32,7 @@ const mockClient = {
 
 describe("Template Engine", () => {
   it("should execute 'rednote-standard' template", async () => {
-    const template = BUILTIN_TEMPLATES["rednote-standard"];
+    const template = getTemplate("rednote-standard");
     const input: ProteusInput = {
       topic: "Test Topic",
       style: "Casual",
