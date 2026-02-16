@@ -1,6 +1,6 @@
 {
   "name": "@forgemcp/proteus",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Universal content generation engine using Gemini (Proteus)",
   "main": "src/index.ts",
   "bin": {
@@ -16,7 +16,6 @@
     "type": "git",
     "url": "ttps://github.com/forgemcp/proteus.git"
   },
-
   "keywords": [
     "openclaw",
     "clawdbot",
@@ -33,6 +32,7 @@
   },
   "dependencies": {
     "@google/genai": "^1.41.0",
+    "commander": "^14.0.3",
     "zod": "^3.22.4"
   },
   "devDependencies": {
