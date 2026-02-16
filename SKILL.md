@@ -75,6 +75,9 @@ const InputSchema = z.object({
   style: z.enum(["Casual", "Professional", "Emotional", "Educational"]).default("Casual").describe("Tone and style of the content"),
   imageCount: z.number().min(1).max(9).default(4).describe("Number of image prompts to generate"),
   model: z.string().optional().describe("Gemini model to use (default: gemini-2.0-flash)"),
+  imageModel: z.string().optional().describe("Image model to use (e.g. imagen-3.0-generate-001)"),
+  template: z.string().default("rednote-standard").describe("Template ID to use (e.g. rednote-standard, wechat-moments)"),
+  apiKey: z.string().optional().describe("Google Gemini API Key"),
   generateImages: z.boolean().default(false).describe("Whether to generate actual images"),
 });
 ```
