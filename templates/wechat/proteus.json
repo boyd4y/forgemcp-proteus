@@ -1,0 +1,30 @@
+{
+  "id": "wechat-moments",
+  "description": "Simple 2-step workflow for WeChat Moments (Text + 1 Image)",
+  "steps": [
+    {
+      "id": "generate_content_and_prompt",
+      "type": "generate_json",
+      "name": "Generate Text & Prompt",
+      "template": "wechat.j2",
+      "outputKey": "contentData",
+      "inputMapping": {
+        "topic": "topic",
+        "style": "style"
+      }
+    },
+    {
+      "id": "prepare_image_prompt",
+      "type": "transform",
+      "name": "Extract Image Prompt",
+      "handlerId": "extractWechatImagePrompt",
+      "outputKey": "imagePrompts"
+    },
+    {
+      "id": "generate_image",
+      "type": "generate_images",
+      "name": "Generate Image",
+      "promptSourceKey": "imagePrompts"
+    }
+  ]
+}
