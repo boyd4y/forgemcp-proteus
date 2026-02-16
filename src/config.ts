@@ -8,7 +8,7 @@ export const InputSchema = z.object({
   imageCount: z.number().min(3).max(9).default(3),
   apiKey: z.string().optional(),
   model: z.string().optional(),
-  template: z.string().default("rednote-standard").describe("Template ID to use"),
+  template: z.string().min(1, "Template ID is required").describe("Template ID to use"),
   imageModel: z.string().optional().describe("Image model (default: imagen-3.0-generate-001)"),
   generateImages: z.boolean().default(false).describe("Whether to generate actual images using the image model"),
 });
