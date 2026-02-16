@@ -8,6 +8,7 @@ requires:
   node: ">=18"
   npm: ["@google/genai", "zod"]
   env: ["GEMINI_API_KEY"]
+  bins: ["bun"]
 metadata:
   clawdbot:
     permissions:
@@ -15,6 +16,7 @@ metadata:
       filesystem: ["read:./templates"]
     user-invocable: true
     risk: low
+
 examples:
   - "Create a Xiaohongshu post about a cozy cafe in Shanghai"
   - '/proteus --topic "Summer outfit ideas" --style "Casual"'
