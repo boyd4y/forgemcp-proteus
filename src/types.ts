@@ -40,8 +40,9 @@ export interface Step {
 }
 
 export interface Template {
-
   id: string;
   description: string;
+  baseDir?: string; // Directory containing the template files
   steps: Step[];
 }
+

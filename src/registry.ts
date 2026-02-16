@@ -2,99 +2,6 @@ import fs from "fs";
 import path from "path";
 import os from "os";
 import { Template } from "./types";
-import { parseOutlineText, generateImagePromptsFromOutline } from "./processors";
-
-export const BUILTIN_TEMPLATES: Record<string, Template> = {
-  "rednote-standard": {
-    id: "rednote-standard",
-    description: "Standard 3-stage RedNote generation (Outline -> Images -> Content)",
-    steps: [
-      {
-        id: "generate_outline",
-        type: "generate_text",
-        name: "Generate Outline",
-        template: "outline.j2",
-        outputKey: "outlineRaw",
-        inputMapping: {
-          topic: "topic",
-          style: "style",
-          imageCount: "imageCount"
-        }
-      },
-      {
-        id: "parse_outline",
-        type: "transform",
-        name: "Parse Outline",
-        handlerId: "parseOutlineText",
-        outputKey: "outline"
-      },
-      {
-        id: "generate_prompts",
-        type: "transform",
-        name: "Generate Image Prompts",
-        handlerId: "generateImagePromptsFromOutline",
-        outputKey: "imagePrompts"
-      },
-      {
-        id: "generate_images",
-        type: "generate_images",
-        name: "Generate Images",
-        promptSourceKey: "imagePrompts",
-        condition: (ctx) => (ctx.generateImages || false)
-      },
-      {
-        id: "prepare_content_input",
-        type: "transform",
-        name: "Stringify Outline",
-        handlerId: "stringifyOutline",
-        outputKey: "outline_json"
-      },
-      {
-        id: "generate_content",
-        type: "generate_json",
-        name: "Generate Content",
-        template: "content.j2",
-        outputKey: "contentData",
-        inputMapping: {
-          topic: "topic",
-          style: "style",
-          outline_json: "outline_json"
-        }
-      }
-    ]
-  },
-  "wechat-moments": {
-    id: "wechat-moments",
-    description: "Simple 2-step workflow for WeChat Moments (Text + 1 Image)",
-    steps: [
-      {
-        id: "generate_content_and_prompt",
-        type: "generate_json",
-        name: "Generate Text & Prompt",
-        template: "wechat.j2",
-        outputKey: "contentData", 
-        inputMapping: {
-          topic: "topic",
-          style: "style"
-        }
-      },
-      {
-        id: "prepare_image_prompt",
-        type: "transform",
-        name: "Extract Image Prompt",
-        handlerId: "extractWechatImagePrompt",
-        outputKey: "imagePrompts"
-      },
-      {
-        id: "generate_image",
-        type: "generate_images",
-        name: "Generate Image",
-        promptSourceKey: "imagePrompts",
-        condition: (ctx) => (ctx.imagePrompts && ctx.imagePrompts.length > 0) || false
-      }
-    ]
-  }
-};
 
 const CONFIG_FILE_NAME = "proteus.json";
 
@@ -106,17 +13,54 @@ function getConfigFilePaths(): string[] {
   ];
 }
 
+function scanTemplatesDir(): Record<string, Template> {
+  const templates: Record<string, Template> = {};
+  const templatesDir = path.join(process.cwd(), "templates");
+
+  if (!fs.existsSync(templatesDir)) {
+    return templates;
+  }
+
+  const entries = fs.readdirSync(templatesDir, { withFileTypes: true });
+
+  for (const entry of entries) {
+    if (entry.isDirectory()) {
+      const configPath = path.join(templatesDir, entry.name, CONFIG_FILE_NAME);
+      if (fs.existsSync(configPath)) {
+        try {
+          const content = fs.readFileSync(configPath, "utf-8");
+          const config = JSON.parse(content);
+          
+          // Use folder name as ID if not specified, or just trust the config
+          const templateId = config.id || entry.name;
+          
+          templates[templateId] = {
+            ...config,
+            id: templateId,
+            baseDir: path.join(templatesDir, entry.name)
+          };
+          console.log(`Loaded template '${templateId}' from ${entry.name}`);
+        } catch (error) {
+          console.warn(`Failed to load template from ${entry.name}:`, error);
+        }
+      }
+    }
+  }
+  return templates;
+}
+
 export function loadTemplates(): Record<string, Template> {
-  let templates = { ...BUILTIN_TEMPLATES };
+  // 1. Scan templates/ directory
+  let templates = scanTemplatesDir();
   
+  // 2. Load global/user config overrides
   for (const filePath of getConfigFilePaths()) {
     if (fs.existsSync(filePath)) {
       try {
         const fileContent = fs.readFileSync(filePath, "utf-8");
         const userConfig = JSON.parse(fileContent);
         if (userConfig.templates) {
-          console.log(`Loading templates from ${filePath}`);
-          // Merge user templates, overriding built-ins if ID matches
+          console.log(`Loading extra templates from ${filePath}`);
           templates = { ...templates, ...userConfig.templates };
         }
       } catch (error) {
@@ -138,19 +82,11 @@ export function getTemplate(id: string): Template {
 }
 
 export function saveConfigFile(targetPath: string) {
+    // Generate a starter config file
     const config = {
-        templates: BUILTIN_TEMPLATES
+        templates: {} 
     };
     
-    // Remove functions (condition, handler) from JSON output to ensure validity
-    // handlerId strings are preserved
-    const jsonString = JSON.stringify(config, (key, value) => {
-        if (typeof value === 'function') {
-            return undefined;
-        }
-        return value;
-    }, 2);
-    
-    fs.writeFileSync(targetPath, jsonString);
+    fs.writeFileSync(targetPath, JSON.stringify(config, null, 2));
     console.log(`Config saved to ${targetPath}`);
 }
