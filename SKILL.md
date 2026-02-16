@@ -19,7 +19,7 @@ metadata:
 
 examples:
   - "Create a Xiaohongshu post about a cozy cafe in Shanghai"
-  - 'bun cli.ts --template rednote-standard --topic "Summer outfit ideas" --style "Casual"'
+  - 'proteus --template rednote-standard --topic "Summer outfit ideas" --style "Casual"'
 ---
 
 
@@ -65,12 +65,12 @@ Solves the pain point of writer's block and time-consuming content creation for 
 The agent should invoke this tool directly using `bun`. Dependencies are automatically handled by Bun on the first run:
 
 ```bash
-bun cli.ts --template <template> --topic "Topic" --style "Style" --flag value
+proteus --template <template> --topic "Topic" --style "Style" --flag value
 ```
 
 Examples:
-- `bun cli.ts --template rednote-standard --topic "Summer Outfit" --style "Casual"`
-- `bun cli.ts --template rednote-standard --topic "Weekend Hike" --style "Emotional" --generate-images` 
+- `proteus --template rednote-standard --topic "Summer Outfit" --style "Casual"`
+- `proteus --template rednote-standard --topic "Weekend Hike" --style "Emotional" --generate-images` 
 
 ## Input Schema (Zod)
 
