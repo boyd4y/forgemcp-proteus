@@ -20,7 +20,7 @@ This repository contains an OpenClaw skill (pure Node.js) for generating high-qu
 ## Development Guide
 
 ### Setup
-- Install dependencies: `bun install`
+- No manual setup required. Bun automatically handles dependencies on the first run.
 
 ### Authentication (Zero-Config)
 The tool uses the unified `@google/genai` SDK which auto-detects credentials in this priority:
@@ -34,8 +34,9 @@ The tool uses the unified `@google/genai` SDK which auto-detects credentials in 
 ### Running Tools
 CLI wrapper:
 ```bash
-bun run cli.ts "Summer Outfit Ideas" "Casual" --template rednote-standard --generate-images
+bun cli.ts "Summer Outfit Ideas" "Casual" --template rednote-standard --generate-images
 ```
+
 
 Run tests:
 ```bash

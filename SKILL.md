@@ -6,10 +6,10 @@ author: ForgeMCP
 license: MIT
 requires:
   node: ">=18"
-  npm: ["@google/genai", "zod"]
   env: ["GEMINI_API_KEY"]
   bins: ["bun"]
 metadata:
+
   clawdbot:
     permissions:
       network: ["generativelanguage.googleapis.com"]
@@ -19,8 +19,9 @@ metadata:
 
 examples:
   - "Create a Xiaohongshu post about a cozy cafe in Shanghai"
-  - 'bun run cli.ts "Summer outfit ideas" "Casual"'
+  - 'bun cli.ts "Summer outfit ideas" "Casual"'
 ---
+
 
 ## Security Manifest
 
@@ -54,15 +55,15 @@ Solves the pain point of writer's block and time-consuming content creation for 
 - "Generate a Xiaohongshu guide for [Topic] with [Style]"
 
 ### Invocation
-The agent should invoke this tool by running the following command in the terminal:
+The agent should invoke this tool directly using `bun`. Dependencies are automatically handled by Bun on the first run:
 
 ```bash
-bun run cli.ts "Topic" "Style" --flag value
+bun cli.ts "Topic" "Style" --flag value
 ```
 
 Examples:
-- `bun run cli.ts "Summer Outfit" "Casual"`
-- `bun run cli.ts "Weekend Hike" "Emotional" --generate-images` 
+- `bun cli.ts "Summer Outfit" "Casual"`
+- `bun cli.ts "Weekend Hike" "Emotional" --generate-images` 
 
 ## Input Schema (Zod)
 
@@ -74,7 +75,7 @@ const InputSchema = z.object({
   style: z.enum(["Casual", "Professional", "Emotional", "Educational"]).default("Casual").describe("Tone and style of the content"),
   imageCount: z.number().min(1).max(9).default(4).describe("Number of image prompts to generate"),
   model: z.string().optional().describe("Gemini model to use (default: gemini-2.0-flash)"),
-  generateImages: z.boolean().default(false).describe("Whether to generate actual images using Imagen 3 (Vertex AI)"),
+  generateImages: z.boolean().default(false).describe("Whether to generate actual images"),
 });
 ```
 
