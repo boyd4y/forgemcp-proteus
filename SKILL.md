@@ -19,7 +19,7 @@ metadata:
 
 examples:
   - "Create a Xiaohongshu post about a cozy cafe in Shanghai"
-  - '/proteus --topic "Summer outfit ideas" --style "Casual"'
+  - 'bun run cli.ts "Summer outfit ideas" "Casual"'
 ---
 
 ## Security Manifest
@@ -53,16 +53,17 @@ Solves the pain point of writer's block and time-consuming content creation for 
 - "Help me write a RedNote post about [Topic]"
 - "Generate a Xiaohongshu guide for [Topic] with [Style]"
 
-### Slash Command
-When installed as an OpenClaw skill, use the `/proteus` command:
+### Invocation
+The agent should invoke this tool by running the following command in the terminal:
 
 ```bash
-/proteus --topic "My Topic" --style "My Style"
-/proteus --topic "My Topic" --generate-images
-/proteus --topic "My Topic" --template wechat-moments
+bun run cli.ts "Topic" "Style" --flag value
 ```
 
-*Note: The agent invokes this via `bun run cli.ts` internally when running from the source repository.*
+Examples:
+- `bun run cli.ts "Summer Outfit" "Casual"`
+- `bun run cli.ts "Weekend Hike" "Emotional" --generate-images` 
+
 ## Input Schema (Zod)
 
 ```typescript
