@@ -13,8 +13,8 @@
     "start": "bun run cli.ts"
   },
   "repository": {
-    "type": "git",
-    "url": "ttps://github.com/forgemcp/proteus.git"
+    "type": "http",
+    "url": "https://github.com/forgemcp/proteus.git"
   },
   "keywords": [
     "openclaw",
