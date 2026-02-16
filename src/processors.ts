@@ -1,3 +1,4 @@
+import path from "path";
 import { ProteusContext } from "./types";
 import { loadTemplate, renderTemplate } from "./core";
 
@@ -35,7 +36,7 @@ export async function generateImagePromptsFromOutline(context: ProteusContext): 
   const { outline, topic } = context;
   if (!outline || !Array.isArray(outline)) return [];
 
-  const imageTemplate = await loadTemplate("image_prompts.j2");
+  const imageTemplate = await loadTemplate(context.templateBaseDir ? path.join(context.templateBaseDir, "image_prompts.j2") : "image_prompts.j2");
   const imagePrompts: string[] = [];
 
   for (const page of outline) {

@@ -10,7 +10,7 @@ export async function executeTemplate(
   template: Template,
   input: ProteusInput
 ): Promise<ProteusContext> {
-  const context: ProteusContext = { ...input };
+  const context: ProteusContext = { ...input, templateBaseDir: template.baseDir };
   const modelName = input.model || DEFAULT_TEXT_MODEL;
   const imageModelName = input.imageModel || DEFAULT_IMAGE_MODEL;
 
@@ -26,7 +26,13 @@ export async function executeTemplate(
       if (step.type === "generate_text") {
         if (!step.template) throw new Error(`Step ${step.id} missing template`);
         
-        const tmplContent = await loadTemplate(step.template);
+        // Resolve template path: relative to baseDir if set, otherwise assumes global templates dir (legacy)
+        let templatePath = step.template;
+        if (template.baseDir) {
+            templatePath = path.join(template.baseDir, step.template);
+        }
+
+        const tmplContent = await loadTemplate(templatePath);
         const data = mapInput(step.inputMapping, context);
         const prompt = renderTemplate(tmplContent, data);
         
@@ -43,7 +49,12 @@ export async function executeTemplate(
       } else if (step.type === "generate_json") {
         if (!step.template) throw new Error(`Step ${step.id} missing template`);
 
-        const tmplContent = await loadTemplate(step.template);
+        let templatePath = step.template;
+        if (template.baseDir) {
+            templatePath = path.join(template.baseDir, step.template);
+        }
+
+        const tmplContent = await loadTemplate(templatePath);
         const data = mapInput(step.inputMapping, context);
         const prompt = renderTemplate(tmplContent, data);
         
@@ -55,7 +66,6 @@ export async function executeTemplate(
       } else if (step.type === "transform") {
         let handler = step.handler;
         
-        // Lookup handler by ID if provided (for JSON/serializable templates)
         if (!handler && step.handlerId) {
           handler = PROCESSORS[step.handlerId];
           if (!handler) throw new Error(`Processor '${step.handlerId}' not found in registry`);

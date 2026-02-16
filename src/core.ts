@@ -4,7 +4,7 @@ import { GoogleGenAI } from "@google/genai";
 
 // 1. Template Loading
 export async function loadTemplate(name: string): Promise<string> {
-  const templatePath = path.join(process.cwd(), "templates", name);
+  const templatePath = name;
   return await fs.readFile(templatePath, "utf-8");
 }
 
