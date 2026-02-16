@@ -19,12 +19,8 @@
 ## 📦 Installation
 
 ```bash
-# Using npm
-npm install @forgemcp/proteus
-
-# Using bun
+# Using Bun
 bun add @forgemcp/proteus
-```
 
 ## 🚀 Usage
 
@@ -41,7 +37,7 @@ proteus init
 proteus --template rednote-standard --topic "Spring Outfit Ideas" --style "Casual" --generate-images
 ```
 
-#### Global Usage (npm/bunx)
+#### Global Usage (bunx)
 If you want to use it without cloning, use `bunx`:
 
 ```bash
