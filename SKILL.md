@@ -65,12 +65,12 @@ Solves the pain point of writer's block and time-consuming content creation for 
 The agent should invoke this tool directly using `bun`. Dependencies are automatically handled by Bun on the first run:
 
 ```bash
-proteus --template <template> --topic "Topic" --style "Style" --flag value
+bun run cli.ts --template <template> --topic "Topic" --style "Style" --flag value
 ```
 
 Examples:
-- `proteus --template rednote-standard --topic "Summer Outfit" --style "Casual"`
-- `proteus --template rednote-standard --topic "Weekend Hike" --style "Emotional" --generate-images` 
+- `bun run cli.ts --template rednote-standard --topic "Summer Outfit" --style "Casual"`
+- `bun run cli.ts --template rednote-standard --topic "Weekend Hike" --style "Emotional" --generate-images` 
 
 ## Input Schema (Zod)
 

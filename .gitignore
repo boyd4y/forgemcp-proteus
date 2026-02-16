@@ -33,3 +33,4 @@ coverage/
 
 # Output
 output/
+bun.lock
