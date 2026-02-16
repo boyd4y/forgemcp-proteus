@@ -73,11 +73,11 @@ import { z } from "zod";
 const InputSchema = z.object({
   topic: z.string().min(1).describe("The main topic of the post"),
   style: z.enum(["Casual", "Professional", "Emotional", "Educational"]).default("Casual").describe("Tone and style of the content"),
+  template: z.string().optional().describe("Template to use (e.g., rednote-standard, wechat-moments)"),
   imageCount: z.number().min(1).max(9).default(4).describe("Number of image prompts to generate"),
+  imageModel: z.string().optional().describe("Model for image generation (e.g., imagen-3)"),
   model: z.string().optional().describe("Gemini model to use (default: gemini-2.0-flash)"),
-  imageModel: z.string().optional().describe("Image model to use (e.g. imagen-3.0-generate-001)"),
-  template: z.string().default("rednote-standard").describe("Template ID to use (e.g. rednote-standard, wechat-moments)"),
-  apiKey: z.string().optional().describe("Google Gemini API Key"),
+  apiKey: z.string().optional().describe("Optional API key to override environment variable"),
   generateImages: z.boolean().default(false).describe("Whether to generate actual images"),
 });
 ```
