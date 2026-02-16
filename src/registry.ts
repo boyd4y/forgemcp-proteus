@@ -7,9 +7,14 @@ const CONFIG_FILE_NAME = "proteus.json";
 
 function getConfigFilePaths(): string[] {
   return [
+    // Local config (overridden by global)
     path.join(process.cwd(), CONFIG_FILE_NAME),
+    
+    // Global config (higher priority)
     path.join(os.homedir(), ".config", "proteus", CONFIG_FILE_NAME),
     path.join(os.homedir(), ".proteus", CONFIG_FILE_NAME),
+    path.join(os.homedir(), ".proteus.json"),
+    path.join(os.homedir(), ".proteus"), // RC-like file
   ];
 }
 

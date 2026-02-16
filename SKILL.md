@@ -5,7 +5,7 @@ version: 1.0.0
 author: ForgeMCP
 license: MIT
 requires:
-  node: ">=18"
+  node: ">=22"
   env: ["GEMINI_API_KEY"]
   bins: ["bun"]
 metadata:
