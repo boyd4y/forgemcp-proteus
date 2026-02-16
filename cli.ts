@@ -2,6 +2,7 @@
 import { Command } from "commander";
 import { generateContent } from "./src/index";
 import { saveConfigFile } from "./src/registry";
+import pkg from "./package.json";
 
 // Export for library usage
 export default generateContent;
@@ -13,7 +14,7 @@ if ((import.meta as any).main) {
   program
     .name("proteus")
     .description("OpenClaw Skill - Proteus Content Engine")
-    .version("1.0.0");
+    .version(pkg.version);
 
   program
     .command("init")
