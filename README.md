@@ -35,10 +35,10 @@ If you have cloned the repository, run directly via `bun`:
 
 ```bash
 # Initialize a config file
-bun cli.ts init
+proteus init
 
 # Run with default template (RedNote style)
-bun cli.ts --template rednote-standard --topic "Spring Outfit Ideas" --style "Casual" --generate-images
+proteus --template rednote-standard --topic "Spring Outfit Ideas" --style "Casual" --generate-images
 ```
 
 #### Global Usage (npm/bunx)
@@ -70,7 +70,7 @@ if (result.ok) {
 ### 1. Xiaohongshu: OpenClaw Agent Intro (Crayfish)
 Generate a tech intro comparing the "Claw" agent to a powerful crayfish.
 ```bash
-bun cli.ts --template rednote-standard --topic "OpenClaw: The Intelligent Crayfish Agent 🦞" --style "Educational"
+proteus --template rednote-standard --topic "OpenClaw: The Intelligent Crayfish Agent 🦞" --style "Educational"
 ```
 
 <details>
@@ -109,7 +109,7 @@ bun cli.ts --template rednote-standard --topic "OpenClaw: The Intelligent Crayfi
 ### 2. WeChat Moments: Life Update
 Generate a short, punchy caption with a single image prompt.
 ```bash
-bun cli.ts --template wechat-moments --topic "Friday Night Vibes" --style "Casual"
+proteus --template wechat-moments --topic "Friday Night Vibes" --style "Casual"
 ```
 
 ## 🛠️ Configuration (proteus.json)
