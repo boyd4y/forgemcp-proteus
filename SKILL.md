@@ -19,7 +19,7 @@ metadata:
 
 examples:
   - "Create a Xiaohongshu post about a cozy cafe in Shanghai"
-  - 'bun cli.ts --topic "Summer outfit ideas" --style "Casual"'
+  - 'bun cli.ts --template rednote-standard --topic "Summer outfit ideas" --style "Casual"'
 ---
 
 
@@ -65,12 +65,12 @@ Solves the pain point of writer's block and time-consuming content creation for 
 The agent should invoke this tool directly using `bun`. Dependencies are automatically handled by Bun on the first run:
 
 ```bash
-bun cli.ts --topic "Topic" --style "Style" --flag value
+bun cli.ts --template <template> --topic "Topic" --style "Style" --flag value
 ```
 
 Examples:
-- `bun cli.ts --topic "Summer Outfit" --style "Casual"`
-- `bun cli.ts --topic "Weekend Hike" --style "Emotional" --generate-images` 
+- `bun cli.ts --template rednote-standard --topic "Summer Outfit" --style "Casual"`
+- `bun cli.ts --template rednote-standard --topic "Weekend Hike" --style "Emotional" --generate-images` 
 
 ## Input Schema (Zod)
 
@@ -80,11 +80,8 @@ import { z } from "zod";
 const InputSchema = z.object({
   topic: z.string().min(1).describe("The main topic of the post"),
   style: z.enum(["Casual", "Professional", "Emotional", "Educational"]).default("Casual").describe("Tone and style of the content"),
-  template: z.string().default("rednote-standard").describe("Template to use (rednote-standard, wechat-moments)"),
+  template: z.string().min(1).describe("Template to use (rednote-standard, wechat-moments)"),
   imageCount: z.number().min(1).max(9).default(4).describe("Number of image prompts to generate"),
-  imageModel: z.string().optional().describe("Model for image generation (e.g., imagen-3)"),
-  model: z.string().optional().describe("Gemini model to use (default: gemini-2.0-flash)"),
-  apiKey: z.string().optional().describe("Optional API key to override environment variable"),
   generateImages: z.boolean().default(false).describe("Whether to generate actual images"),
 });
 ```
