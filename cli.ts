@@ -20,7 +20,21 @@ if ((import.meta as any).main) {
 
   for (let i = 0; i < args.length; i++) {
     const arg = args[i];
-    if (arg === "--image-count") {
+    if (arg === "--topic") {
+      const val = args[++i];
+      if (val === undefined || val.startsWith("--")) {
+        console.error("Error: --topic requires a value");
+        process.exit(1);
+      }
+      options.topic = val;
+    } else if (arg === "--style") {
+      const val = args[++i];
+      if (val === undefined || val.startsWith("--")) {
+        console.error("Error: --style requires a value");
+        process.exit(1);
+      }
+      options.style = val;
+    } else if (arg === "--image-count") {
       const val = args[++i];
       if (val === undefined || val.startsWith("--")) {
         console.error("Error: --image-count requires a value");
@@ -65,20 +79,23 @@ if ((import.meta as any).main) {
     }
   }
 
-  const topic = positionals[0];
-  const style = positionals[1] || "Casual";
+  const topic = options.topic || positionals[0];
+  const style = options.style || positionals[1] || "Casual";
 
   if (!topic) {
-    console.error("Usage: bun cli.ts <topic> [style] [flags]");
-    console.error("Commands:");
+    console.error("Usage: bun cli.ts --topic <topic> [--style <style>] [flags]");
+    console.error("Alternative: bun cli.ts <topic> [style] [flags]");
+    console.error("\nCommands:");
     console.error("  init                  Generate proteus.json config file");
-    console.error("Flags:");
-    console.error("  --image-count <number>");
-    console.error("  --image-model <string>");
-    console.error("  --model <string>");
-    console.error("  --api-key <string>");
-    console.error("  --template <string>");
-    console.error("  --generate-images");
+    console.error("\nFlags:");
+    console.error("  --topic <string>      The main topic of the post");
+    console.error("  --style <string>      Tone and style (Casual, Professional, etc.)");
+    console.error("  --template <string>   Template to use (e.g., rednote-standard)");
+    console.error("  --image-count <number> Number of images to generate");
+    console.error("  --image-model <string> Model for image generation");
+    console.error("  --model <string>      Gemini model to use");
+    console.error("  --api-key <string>    Optional API key override");
+    console.error("  --generate-images     Whether to generate actual images");
     process.exit(1);
   }
 
