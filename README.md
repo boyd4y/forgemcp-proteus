@@ -30,7 +30,8 @@ bun add @forgemcp/proteus
 
 ### 1. As a CLI Tool
 
-You can run it directly via `bun` or `node`:
+#### Local Development (Clone)
+If you have cloned the repository, run directly via `bun`:
 
 ```bash
 # Initialize a config file
@@ -38,11 +39,14 @@ bun run cli.ts init
 
 # Run with default template (RedNote style)
 bun run cli.ts "Spring Outfit Ideas" "Casual" --template rednote-standard --generate-images
-
-# Run with custom template
-bun run cli.ts "Weekend Hike" "Casual" --template wechat-moments
 ```
 
+#### Global Usage (npm/bunx)
+If you want to use it without cloning, use `bunx`:
+
+```bash
+bunx @forgemcp/proteus "Spring Outfit Ideas" "Casual" --template rednote-standard
+```
 ### 2. As a Library (Node.js/TypeScript)
 
 ```typescript
