@@ -14,7 +14,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/forgemcp/proteus.git"
+    "url": "git+https://github.com/forgemcp/proteus.git"
   },
   "keywords": [
     "openclaw",
