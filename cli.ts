@@ -69,7 +69,7 @@ if ((import.meta as any).main) {
   const style = positionals[1] || "Casual";
 
   if (!topic) {
-    console.error("Usage: proteus <topic> [style] [flags]");
+    console.error("Usage: bun cli.ts <topic> [style] [flags]");
     console.error("Commands:");
     console.error("  init                  Generate proteus.json config file");
     console.error("Flags:");
