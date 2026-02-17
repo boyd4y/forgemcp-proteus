@@ -1,27 +1,19 @@
 ---
-name: @forgemcp/proteus
-description: Universal content generation engine (Proteus) - Create content for RedNote, WeChat, Twitter, etc.
+name: proteus
+description: Universal content generation engine - Create viral posts for Xiaohongshu, WeChat, Twitter etc.
 version: 1.0.0
-author: ForgeMCP
-license: MIT
 requires:
+  bins: [bun]
+  env: [GEMINI_API_KEY]
   node: ">=22"
-  env: ["GEMINI_API_KEY"]
-  bins: ["bun"]
 metadata:
-
-  clawdbot:
+  openclaw:
     permissions:
       network: ["generativelanguage.googleapis.com"]
       filesystem: ["read:./templates"]
     user-invocable: true
     risk: low
-
-examples:
-  - "Create a Xiaohongshu post about a cozy cafe in Shanghai"
-  - 'proteus --template rednote-standard --topic "Summer outfit ideas" --style "Casual"'
 ---
-
 
 ## Security Manifest
 

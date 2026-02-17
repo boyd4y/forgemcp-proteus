@@ -35,6 +35,7 @@ if ((import.meta as any).main) {
     .option("--template <string>", "Template to use (e.g., rednote-standard)")
     .option("--image-count <number>", "Number of images to generate", (value) => parseInt(value, 10))
     .option("--generate-images", "Whether to generate actual images")
+    .option("-r, --reference-images <paths...>", "List of reference image paths")
     .action(async (topicArg, styleArg, options) => {
       const topic = options.topic || topicArg;
       const style = options.style || styleArg || "Casual";

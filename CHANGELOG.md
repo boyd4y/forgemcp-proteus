@@ -5,6 +5,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.0.4] - 2026-02-17
+
+### Added
+- **Reference Images**: Support for passing reference images via `--reference-images` CLI flag or API input to guide content generation.
+- **Multimodal Generation**: Updated `generate_text` and `generate_json` steps to include image inputs in Gemini API calls.
+
 ## [1.0.0] - 2026-02-14
 
 ### Added

@@ -1,6 +1,6 @@
 {
   "name": "@forgemcp/proteus",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Universal content generation engine using Gemini (Proteus)",
   "main": "src/index.ts",
   "bin": {

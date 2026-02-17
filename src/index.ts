@@ -16,7 +16,8 @@ export async function generateContent(input: ProteusInput) {
     model: input.model || process.env.GEMINI_MODEL,
     imageModel: input.imageModel, 
     generateImages: input.generateImages || false,
-    template: input.template || "rednote-standard"
+    template: input.template || "rednote-standard",
+    referenceImages: input.referenceImages
   });
 
   if (!parsed.success) {

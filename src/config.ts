@@ -4,13 +4,15 @@ import { GoogleGenAI } from "@google/genai";
 // 1. Input Schema (Centralized)
 export const InputSchema = z.object({
   topic: z.string().min(1, "Topic is required"),
-  style: z.enum(["Casual", "Professional", "Emotional", "Educational"]).default("Casual"),
-  imageCount: z.number().min(3).max(9).default(3),
+  // style: z.enum(["Casual", "Professional", "Emotional", "Educational"]).default("Casual"),
+  style: z.string().default("casual"),
+  imageCount: z.number().min(1).max(4).default(1),
   apiKey: z.string().optional(),
   model: z.string().optional(),
   template: z.string().min(1, "Template ID is required").describe("Template ID to use"),
   imageModel: z.string().optional().describe("Image model (default: imagen-3.0-generate-001)"),
   generateImages: z.boolean().default(false).describe("Whether to generate actual images using the image model"),
+  referenceImages: z.array(z.string()).optional().describe("List of file paths to reference images"),
 });
 
 export type ProteusInput = z.input<typeof InputSchema>;

@@ -14,11 +14,31 @@ export const renderTemplate = (template: string, data: Record<string, any>) => {
   });
 };
 
+export async function readImage(filePath: string): Promise<{ mimeType: string; data: string }> {
+  try {
+    const ext = path.extname(filePath).toLowerCase().replace('.', '');
+    const mimeType = ext === 'jpg' ? 'image/jpeg' : `image/${ext}`;
+    const data = await fs.readFile(filePath, { encoding: 'base64' });
+    return { mimeType, data };
+  } catch (error) {
+    console.error(`Failed to read image at ${filePath}:`, error);
+    throw error;
+  }
+}
+
 // 2. Safe JSON Generation
-export async function safeGenerateJSON(client: GoogleGenAI, modelName: string, prompt: string): Promise<any> {
+export async function safeGenerateJSON(client: GoogleGenAI, modelName: string, prompt: string, images?: { mimeType: string; data: string }[]): Promise<any> {
+  const parts: any[] = [{ text: prompt }];
+  
+  if (images && images.length > 0) {
+    for (const img of images) {
+      parts.push({ inlineData: { mimeType: img.mimeType, data: img.data } });
+    }
+  }
+
   const response = await client.models.generateContent({
     model: modelName,
-    contents: [{ role: "user", parts: [{ text: prompt }] }],
+    contents: [{ role: "user", parts }],
     config: {
       responseMimeType: "application/json",
     }
