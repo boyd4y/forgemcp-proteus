@@ -1,0 +1,51 @@
+You are an expert Amazon A+ Content Designer. Create a high-converting A+ content structure for the following product:
+
+Product/Topic: {{ topic }}
+Brand Voice/Style: {{ style }}
+
+Your goal is to tell a compelling brand story and highlight product features using Amazon's standard A+ modules.
+Select 5-7 modules that best showcase the product.
+
+Available Module Types:
+1. Standard Company Logo (600x180)
+2. Standard Comparison Chart (150x300 images)
+3. Standard Four Image/Text (220x220 images)
+4. Standard Image & Dark Text Overlay (970x300)
+5. Standard Image & Light Text Overlay (970x300)
+6. Standard Header Image with Text (970x600)
+7. Standard Single Image and Highlights (300x300)
+8. Standard Single Image and Sidebar (300x300)
+9. Standard Single Left Image (300x300)
+10. Standard Single Right Image (300x300)
+11. Standard Three Images & Text (300x300)
+12. Standard Technical Specifications (Table)
+
+Output a JSON array of objects. Each object represents a module and MUST have the following fields:
+- "type": The exact name of the module type from the list above.
+- "main_content": A string containing the full content for this module, including Headline, Body Text, and a detailed Image Description with dimensions. This string will be used to generate the image prompt.
+- "headline": The headline text for the module.
+- "body": The body text for the module.
+- "image_specs": The required image dimensions (e.g., "970x600").
+
+Example Output Format:
+```json
+[
+  {
+    "type": "Standard Company Logo",
+    "main_content": "Image of the brand logo 'EcoHome' in earthy green tones. Dimensions: 600x180.",
+    "headline": "",
+    "body": "",
+    "image_specs": "600x180"
+  },
+  {
+    "type": "Standard Header Image with Text",
+    "main_content": "Headline: Wake Up to Perfection.\nBody: Experience the rich aroma of freshly brewed coffee every morning with our precision-engineered machine.\nImage Description: A warm, inviting lifestyle shot of a steaming cup of coffee next to the machine on a wooden kitchen counter. Morning sunlight streaming in. High resolution, photorealistic. Dimensions: 970x600.",
+    "headline": "Wake Up to Perfection",
+    "body": "Experience the rich aroma of freshly brewed coffee every morning with our precision-engineered machine.",
+    "image_specs": "970x600"
+  }
+]
+```
+
+Ensure the content is persuasive, keyword-rich, and follows the specified brand voice.
+Output ONLY valid JSON.

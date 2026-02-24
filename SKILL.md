@@ -10,9 +10,13 @@ metadata:
   openclaw:
     permissions:
       network: ["generativelanguage.googleapis.com"]
-      filesystem: ["read:./templates"]
+      filesystem: ["read:./templates", "read:./"]
     user-invocable: true
     risk: low
+examples:
+  - "Create a Xiaohongshu post about a cozy cafe in Shanghai"
+  - 'proteus --template rednote-standard --topic "Summer outfit ideas" --style "Casual"'
+  - 'proteus --topic "Analyze this" --reference-images ./image.jpg'
 ---
 
 ## Security Manifest
@@ -75,6 +79,7 @@ const InputSchema = z.object({
   template: z.string().min(1).describe("Template to use (rednote-standard, wechat-moments)"),
   imageCount: z.number().min(1).max(9).default(4).describe("Number of image prompts to generate"),
   generateImages: z.boolean().default(false).describe("Whether to generate actual images"),
+  referenceImages: z.array(z.string()).optional().describe("List of file paths to reference images"),
 });
 ```
 

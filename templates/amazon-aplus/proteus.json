@@ -1,0 +1,49 @@
+{
+  "id": "amazon-aplus",
+  "description": "Standard Amazon A+ Content Generation (Structure -> Images -> Content)",
+  "steps": [
+    {
+      "id": "generate_structure",
+      "type": "generate_json",
+      "name": "Generate A+ Structure",
+      "template": "structure.j2",
+      "outputKey": "outline",
+      "inputMapping": {
+        "topic": "topic",
+        "style": "style"
+      }
+    },
+    {
+      "id": "generate_prompts",
+      "type": "transform",
+      "name": "Generate Image Prompts",
+      "handlerId": "generateImagePromptsFromOutline",
+      "outputKey": "imagePrompts"
+    },
+    {
+      "id": "generate_images",
+      "type": "generate_images",
+      "name": "Generate Images",
+      "promptSourceKey": "imagePrompts"
+    },
+    {
+      "id": "prepare_content_input",
+      "type": "transform",
+      "name": "Stringify Outline",
+      "handlerId": "stringifyOutline",
+      "outputKey": "outline_json"
+    },
+    {
+      "id": "finalize_content",
+      "type": "generate_json",
+      "name": "Finalize Content",
+      "template": "content.j2",
+      "outputKey": "contentData",
+      "inputMapping": {
+        "topic": "topic",
+        "style": "style",
+        "outline_json": "outline_json"
+      }
+    }
+  ]
+}

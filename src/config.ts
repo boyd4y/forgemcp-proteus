@@ -10,7 +10,7 @@ export const InputSchema = z.object({
   apiKey: z.string().optional(),
   model: z.string().optional(),
   template: z.string().min(1, "Template ID is required").describe("Template ID to use"),
-  imageModel: z.string().optional().describe("Image model (default: imagen-3.0-generate-001)"),
+  imageModel: z.string().optional().describe("Image model (default: gemini-3-pro-image-preview)"),
   generateImages: z.boolean().default(false).describe("Whether to generate actual images using the image model"),
   referenceImages: z.array(z.string()).optional().describe("List of file paths to reference images"),
 });

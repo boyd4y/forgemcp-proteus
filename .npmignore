@@ -2,3 +2,4 @@ test/
 .proteus
 node_modules/
 output/
+.images/

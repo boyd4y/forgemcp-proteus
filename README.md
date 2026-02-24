@@ -12,6 +12,7 @@
 
 - **🧩 Template System**: Configurable generation pipelines via `proteus.json`.
 - **🖼️ Auto-Visuals**: Integrated AI image generation (Imagen 3 / Gemini Pro Vision).
+- **👁️ Multimodal**: Support for reference images to guide generation.
 - **🧠 Chain Engine**: Supports complex flows (e.g., Outline -> Visuals -> Content).
 - **⚡️ Fast & Cheap**: Optimized for `gemini-2.0-flash` by default.
 - **☁️ Unified Auth**: Works with **Google AI Studio** (API Key) and **Vertex AI out of the box.
@@ -35,6 +36,9 @@ proteus init
 
 # Run with default template (RedNote style)
 proteus --template rednote-standard --topic "Spring Outfit Ideas" --style "Casual" --generate-images
+
+# Use reference images
+proteus --template rednote-standard --topic "Analyze this style" --reference-images ./look1.jpg ./look2.jpg
 ```
 
 #### Global Usage (bunx)
@@ -53,7 +57,8 @@ const result = await generateContent({
   style: "Emotional",
   imageCount: 5,
   apiKey: process.env.GEMINI_API_KEY,
-  template: "rednote-standard"
+  template: "rednote-standard",
+  referenceImages: ["./photo1.jpg"]
 });
 
 if (result.ok) {

@@ -110,9 +110,17 @@ export async function executeTemplate(
 
           for (let i = 0; i < prompts.length; i++) {
             const prompt = prompts[i];
-            const imagePath = await generateImage(client, imageModelName, prompt, outputDir, i);
+            console.log(`  > [${i + 1}/${prompts.length}] Generating image with model '${imageModelName}'...`);
+            const startTime = Date.now();
+            
+            const imagePath = await generateImage(client, imageModelName, prompt, outputDir, i, referenceImages);
+            
+            const duration = ((Date.now() - startTime) / 1000).toFixed(1);
             if (imagePath) {
+              console.log(`  ✓ [${i + 1}/${prompts.length}] Saved to ${path.basename(imagePath)} (${duration}s)`);
               generatedPaths.push(imagePath);
+            } else {
+              console.log(`  ✗ [${i + 1}/${prompts.length}] Failed (${duration}s)`);
             }
           }
           
